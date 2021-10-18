@@ -67,6 +67,7 @@ public class MainController {
             model.addAttribute("userId", userPost.getId());
             List<Post> posts =  userPost.getPostUser();
             model.addAttribute("posts" , posts );
+            model.addAttribute("username", user.getUsername());
         }
         return "post";
     }

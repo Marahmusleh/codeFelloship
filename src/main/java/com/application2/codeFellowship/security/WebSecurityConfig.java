@@ -38,11 +38,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {//extends a
                 .antMatchers("/signup").permitAll()
                 .antMatchers("/CSS/**").permitAll()
                 .antMatchers("/login").permitAll()
-                .anyRequest().permitAll()
+                .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/login")
-                .defaultSuccessUrl("/",true)
+                .loginPage("/login").loginProcessingUrl("/profile")
+                .defaultSuccessUrl("/")
                 .and()
                 .logout();
 
