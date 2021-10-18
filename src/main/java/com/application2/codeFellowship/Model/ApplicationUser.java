@@ -5,12 +5,15 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 public class ApplicationUser implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "id", nullable = false)
+    private int id;
+
     @Column(unique = true)
     private String username;
 
@@ -20,11 +23,16 @@ public class ApplicationUser implements UserDetails {
     private int dateOfBirth;
     private String bio;
 
+    @OneToMany(mappedBy = "user")
+    private List<Post> PostUser;
+
+
+
+
     public ApplicationUser() {
     }
 
-    public ApplicationUser(Long id, String username, String password, String firstName, String lastName, int dateOfBirth, String bio) {
-        this.id = id;
+    public ApplicationUser( String username, String password, String firstName, String lastName, int dateOfBirth, String bio) {
         this.username = username;
         this.password = password;
         this.firstName = firstName;
@@ -33,11 +41,21 @@ public class ApplicationUser implements UserDetails {
         this.bio = bio;
     }
 
-    public Long getId() {
+    public ApplicationUser(String username, String password, String firstName, String lastName, int dateOfBirth, String bio, List<Post> postUser) {
+        this.username = username;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.dateOfBirth = dateOfBirth;
+        this.bio = bio;
+        PostUser = postUser;
+    }
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -112,5 +130,12 @@ public class ApplicationUser implements UserDetails {
 
     public void setBio(String bio) {
         this.bio = bio;
+    }
+    public List<Post> getPostUser() {
+        return PostUser;
+    }
+
+    public void setPostUser(List<Post> postUser) {
+        PostUser = postUser;
     }
 }

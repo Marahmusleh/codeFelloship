@@ -3,22 +3,20 @@ package com.application2.codeFellowship.Model;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
 public class Post {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
+  private int id;
 
     private String body;
-    private Date createdAt;
-
-    @CreationTimestamp
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "createdAt")
+    private LocalDateTime createdAt = LocalDateTime.now();
 
     @ManyToOne
+    @JoinColumn(name = "user_id")
     private ApplicationUser user;
 
     public Post(){
@@ -37,11 +35,11 @@ public class Post {
         this.body = body;
     }
 
-    public Date getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
 

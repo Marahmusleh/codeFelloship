@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<img src="https://st3.depositphotos.com/4111759/13425/v/600/depositphotos_134255634-stock-illustration-avatar-icon-male-profile-gray.jpg" width="20%" alt="img">
+
+        <div th:each="info:${info}" class="card">
+            <div class="container">
+                <p><span th:text="${info.username}"></span></p>
+                <h2><span th:text="${info.bio}"></span></h2>
+                <p><span th:text="${info.dateOfBirth}"></span></p>
+                <p><span th:text="${info.firstName}"></span></p>
+                <p><span th:text="${info.lastName}"></span></p>
+
+    </div></div>
+
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Sign Out"/>
+</form>
+
+</body>
+</html>

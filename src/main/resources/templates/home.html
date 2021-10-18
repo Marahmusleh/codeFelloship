@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/CSS/Style.css}">
+    <title>Title</title>
+
+</head>
+<body>
+<h2>Welcome  <span th:text="${username}"></span> !</h2>
+
+<ul>
+    <li><a  href="/">Home</a></li>
+    <li><a  href="/signup">Sign Up</a></li>
+    <li><a  href="/login">Log In</a></li>
+    <li><a th:href="@{/users(id = ${userId})}">Profile</a></li>
+    <li><a href="/profile">Post</a></li>
+
+</ul>
+</body>
+</html>
