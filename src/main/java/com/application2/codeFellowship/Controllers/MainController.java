@@ -65,9 +65,9 @@ public class MainController {
         if (user != null) {
             ApplicationUser userPost = applicationUserRepository.findApplicationUserByUsername(user.getUsername());
             model.addAttribute("userId", userPost.getId());
+            model.addAttribute("username", user.getUsername());
             List<Post> posts =  userPost.getPostUser();
             model.addAttribute("posts" , posts );
-            model.addAttribute("username", user.getUsername());
         }
         return "post";
     }
