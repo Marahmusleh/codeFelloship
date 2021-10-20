@@ -41,15 +41,6 @@ public class ApplicationUser implements UserDetails {
         this.bio = bio;
     }
 
-    public ApplicationUser(String username, String password, String firstName, String lastName, int dateOfBirth, String bio, List<Post> postUser) {
-        this.username = username;
-        this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.dateOfBirth = dateOfBirth;
-        this.bio = bio;
-        PostUser = postUser;
-    }
 
     public Integer getId() {
         return id;

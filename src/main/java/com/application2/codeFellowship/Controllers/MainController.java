@@ -64,9 +64,8 @@ public class MainController {
     public String profile(@AuthenticationPrincipal ApplicationUser user , Model model){
         if (user != null) {
             ApplicationUser userPost = applicationUserRepository.findApplicationUserByUsername(user.getUsername());
-            model.addAttribute("userId", userPost.getId());
             model.addAttribute("username", user.getUsername());
-            List<Post> posts =  userPost.getPostUser();
+            List<Post> posts = postRepository.findAllByUser(userPost);
             model.addAttribute("posts" , posts );
         }
         return "post";
