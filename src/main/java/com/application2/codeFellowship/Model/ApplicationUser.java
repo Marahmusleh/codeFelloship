@@ -4,6 +4,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -26,6 +27,18 @@ public class ApplicationUser implements UserDetails {
     @OneToMany(mappedBy = "user")
     private List<Post> PostUser;
 
+    @ManyToMany(cascade = {CascadeType.ALL})
+    @JoinTable(
+            name = "following_followers",
+            joinColumns = @JoinColumn(name = "following_id"),
+            inverseJoinColumns = @JoinColumn(name = "followers_id"))
+
+
+
+    List<ApplicationUser> following = new ArrayList<>();
+
+    @ManyToMany
+    List<ApplicationUser> followers = new ArrayList<>();
 
 
 
@@ -41,14 +54,13 @@ public class ApplicationUser implements UserDetails {
         this.bio = bio;
     }
 
-    public ApplicationUser(String username, String password, String firstName, String lastName, int dateOfBirth, String bio, List<Post> postUser) {
-        this.username = username;
-        this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.dateOfBirth = dateOfBirth;
-        this.bio = bio;
-        PostUser = postUser;
+
+    public List<ApplicationUser> getFollowing() {
+        return following;
+    }
+
+    public List<ApplicationUser> getFollowers() {
+        return followers;
     }
 
     public Integer getId() {
