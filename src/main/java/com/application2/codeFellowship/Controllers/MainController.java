@@ -55,7 +55,7 @@ public class MainController {
         applicationUser = applicationUserRepository.save(applicationUser);
         return new RedirectView("/login");
     }
-    @GetMapping("/users")
+    @GetMapping("/user")
     public String showUser(@RequestParam int id, Model model){
         model.addAttribute("info", applicationUserRepository.findById(id).get());
         return "Info";
@@ -63,10 +63,9 @@ public class MainController {
     @GetMapping("/profile")
     public String profile(@AuthenticationPrincipal ApplicationUser user , Model model){
         if (user != null) {
-            ApplicationUser userPost = applicationUserRepository.findApplicationUserByUsername(user.getUsername());
-            model.addAttribute("username", user.getUsername());
-            List<Post> posts = postRepository.findAllByUser(userPost);
-            model.addAttribute("posts" , posts );
+                ApplicationUser postInfo = applicationUserRepository.findApplicationUserByUsername(user.getUsername());
+                model.addAttribute("username", user.getUsername());
+                model.addAttribute("posts" , postInfo );
         }
         return "post";
     }

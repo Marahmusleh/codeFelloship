@@ -24,7 +24,7 @@ public class ApplicationUser implements UserDetails {
     private String bio;
 
     @OneToMany(mappedBy = "user")
-    private List<Post> PostUser;
+    private List<Post> postUser;
 
 
 
@@ -123,10 +123,10 @@ public class ApplicationUser implements UserDetails {
         this.bio = bio;
     }
     public List<Post> getPostUser() {
-        return PostUser;
+        return postUser;
     }
 
     public void setPostUser(List<Post> postUser) {
-        PostUser = postUser;
+        postUser = postUser;
     }
 }
