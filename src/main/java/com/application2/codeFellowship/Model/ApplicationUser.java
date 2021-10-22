@@ -25,21 +25,7 @@ public class ApplicationUser implements UserDetails {
     private String bio;
 
     @OneToMany(mappedBy = "user")
-    private List<Post> PostUser;
-
-    @ManyToMany(cascade = {CascadeType.ALL})
-    @JoinTable(
-            name = "following_followers",
-            joinColumns = @JoinColumn(name = "following_id"),
-            inverseJoinColumns = @JoinColumn(name = "followers_id"))
-
-
-
-    List<ApplicationUser> following = new ArrayList<>();
-
-    @ManyToMany
-    List<ApplicationUser> followers = new ArrayList<>();
-
+    private List<Post> postUser;
 
 
     public ApplicationUser() {
@@ -54,14 +40,6 @@ public class ApplicationUser implements UserDetails {
         this.bio = bio;
     }
 
-
-    public List<ApplicationUser> getFollowing() {
-        return following;
-    }
-
-    public List<ApplicationUser> getFollowers() {
-        return followers;
-    }
 
     public Integer getId() {
         return id;
@@ -144,10 +122,10 @@ public class ApplicationUser implements UserDetails {
         this.bio = bio;
     }
     public List<Post> getPostUser() {
-        return PostUser;
+        return postUser;
     }
 
     public void setPostUser(List<Post> postUser) {
-        PostUser = postUser;
+        postUser = postUser;
     }
 }

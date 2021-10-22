@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div th:fragment="welcomeMessage">
+  <h1 style="color: #f1f1f1">Welcome <span th:text="${username}"> !</span> </h1>
+</div>
+
+
+<footer th:fragment="footer">
+  <h1 style="text-align: center;color:#f1f1f1;margin-top: 30%">&copy; 2021 codefellowship.com</h1>
+</footer>
+
+
+</body>
+</html>
