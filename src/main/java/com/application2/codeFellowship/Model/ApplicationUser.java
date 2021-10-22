@@ -4,6 +4,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -24,10 +25,18 @@ public class ApplicationUser implements UserDetails {
     private String bio;
 
     @OneToMany(mappedBy = "user")
-    private List<Post> PostUser;
+    private List<Post> postUser;
 
 
-
+    @ManyToMany(cascade = {CascadeType.ALL})
+    @JoinTable(
+            name = "following_follower",
+            joinColumns = @JoinColumn(name = "following_id"),
+            inverseJoinColumns = @JoinColumn(name = "follower_id")
+    )
+    List<ApplicationUser> followers = new ArrayList<>();
+    @ManyToMany(mappedBy = "followers")
+    List<ApplicationUser> following = new ArrayList<>();
 
     public ApplicationUser() {
     }
@@ -41,15 +50,6 @@ public class ApplicationUser implements UserDetails {
         this.bio = bio;
     }
 
-    public ApplicationUser(String username, String password, String firstName, String lastName, int dateOfBirth, String bio, List<Post> postUser) {
-        this.username = username;
-        this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.dateOfBirth = dateOfBirth;
-        this.bio = bio;
-        PostUser = postUser;
-    }
 
     public Integer getId() {
         return id;
@@ -96,46 +96,47 @@ public class ApplicationUser implements UserDetails {
         return password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
     public String getFirstName() {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
 
     public String getLastName() {
         return lastName;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
 
     public int getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(int dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
 
     public String getBio() {
         return bio;
     }
 
-    public void setBio(String bio) {
-        this.bio = bio;
-    }
     public List<Post> getPostUser() {
-        return PostUser;
+        return postUser;
     }
 
     public void setPostUser(List<Post> postUser) {
-        PostUser = postUser;
+        postUser = postUser;
+    }
+
+    public List<ApplicationUser> getFollowers() {
+        return followers;
+    }
+
+    public void setFollowers(List<ApplicationUser> followers) {
+        this.followers = followers;
+    }
+
+    public List<ApplicationUser> getFollowing() {
+        return following;
+    }
+
+    public void setFollowing(List<ApplicationUser> following) {
+        this.following = following;
     }
 }

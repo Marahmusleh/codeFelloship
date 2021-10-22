@@ -26,6 +26,12 @@ form {
     border: 3px solid #f1f1f1;
 }
 
+body{
+    background-image: url("https://cdn.pixabay.com/photo/2020/04/30/15/34/code-5113374_640.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 /* Full-width inputs */
 input[type=text], input[type=password] ,input[type=number] {
     width: 100%;
@@ -90,5 +96,10 @@ span.password {
     }
     .cancelbtn {
         width: 100%;
+    }
+    .container label{
+        color: #f1f1f1;
+        font-size: 30px;
+        background-color: #f1f1f1;
     }
 }
