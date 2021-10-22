@@ -5,3 +5,5 @@
 * You can signup  then login with your username and password.
 * You will have a profile page which has the basic information .
 * You will have a Post page so you can add a post with post's time.
+*  Ability to see all users and follow a user .
+* Ability to see all posts made by users they follow (via a route like /feed).
