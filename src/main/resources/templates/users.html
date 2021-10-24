@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8" >
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/CSS/style.css}">
+
+    <title>Suggest Friends</title>
+</head>
+<body>
+<style>
+    body{
+        background-color: darkgray;
+    }
+</style>
+<main>
+    <h1>People You May Know</h1>
+    <br>
+    <div class="card text-center border-danger mb-3">
+        <div class="card-header bg-transparent border-danger" th:each="user:${Users}">
+            <ul class="nav nav-pills card-header-pills">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">Active</a>
+                </li>
+                <li class="nav-item">
+                <form method="post" th:action="@{'/addfollow?id='+${user.id}}">
+                    <button class="btn btn-danger" th:if="${myfollowers.contains(user) != true and username != user.username}" type="submit">Follow</button>
+                </form>
+                </li>
+            </ul>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSimaXKiVmkH-m-UhHbp1Cc1uxe8Gu05qMXN2U2RFY1kBr-RWIdirqZUnvnlL_YjdcsLd0&usqp=CAU">
+            <div class="card-body text-danger" >
+            <h3 >Username:</h3>
+                <h5 class="card-title" th:text="${user.firstName+ ' ' + user.lastName}"></h5>
+            <h3 >Date Of Birth:</h3>
+                <h5 class="card-title" th:text="${user.dateOfBirth}"></h5>
+            <h3 >Bio:</h3>
+                <h5 class="card-title" th:text="${user.bio}"></h5>
+        </div>
+            <div class="card-footer bg-transparent border-danger"></div>
+        </div>
+    </div>
+    </div>
+</main>
+</body>
+<footer>
+    <div th:replace="fragment :: footer"></div>
+</footer>
+</html>
