@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/CSS/Style.css}">
+    <title>Title</title>
+
+</head>
+<body>
+
+<header>
+    <ul>
+        <li><a  href="/">Home</a></li>
+        <li><a  href="/signup">Sign Up</a></li>
+        <li><a  href="/login">Log In</a></li>
+        <li><a th:href="@{/user(id = ${userId})}">Profile</a></li>
+        <li><a href="/profile">Post</a></li>
+
+    </ul>
+</header>
+<center>
+<h1 style="color: #f1f1f1">Welcome to CodeFellowship website</h1>
+    <div th:replace="fragment :: welcomeMessage"></div>
+</center>
+
+</body>
+<footer>
+    <div th:replace="fragment :: footer"></div>
+</footer>
+</html>

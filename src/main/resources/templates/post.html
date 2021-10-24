@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div>
+    <div th:replace="fragment :: welcomeMessage"></div>
+    <style>
+        input[type=text] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: 1px solid #555;
+            outline: none;
+        }
+
+        input[type=text]:focus {
+            background-color: lightblue;
+        }
+        body{
+            background-color: darkgray;
+        }
+    </style>
+</div>
+
+    <form  th:action="@{/post}" method="post">
+        <label for="body">Write a Post</label>
+        <input type="text" id="body" name="body" required>
+        <br>
+        <button type="submit" >Submit</button>
+    </form>
+
+    <div>
+        <h3> Your Posts : </h3>
+        <ul th:each="post:${posts.postUser}" style="width: 70%;">
+            <li >Post :<span th:text="${post.body}"></span><br/>
+            <li >Time :<span th:text="${post.createdAt}"></span><br/>
+            <li >Posted By :<span th:text="${post.user.username}"></span><br/>
+            </li>
+            <br/>
+        </ul>
+    </div>
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Sign Out"/>
+</form>
+
+</body>
+<footer>
+    <div th:replace="fragment :: footer"></div>
+</footer>
+</html>
