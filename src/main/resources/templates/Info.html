@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<style>
+    body{
+        background-color: darkgray;
+    }
+</style>
+<center>
+    <img src="https://st3.depositphotos.com/4111759/13425/v/600/depositphotos_134255634-stock-illustration-avatar-icon-male-profile-gray.jpg" width="20%" alt="img">
+
+    <div th:each="info:${info}" class="card">
+        <div class="container">
+            <h1><span th:text="'Username:'+''+${info.username}"></span></h1>
+            <h1><span th:text="'First Name:'+''+${info.firstName}"></span></h1>
+            <h1><span th:text="'Last Name:'+''+${info.lastName}"></span></h1>
+            <h1><span th:text="'Date of Birth:'+''+${info.dateOfBirth}"></span></h1>
+            <h1><span th:text="'Bio:'+''+${info.bio}"></span></h1>
+
+
+        </div></div>
+</center>
+
+</body>
+<footer>
+    <div th:replace="fragment :: footer"></div>
+</footer>
+</html>
